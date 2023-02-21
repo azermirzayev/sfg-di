@@ -12,6 +12,6 @@ public class I18nEnglishGreetingService implements GreetingService{
 
     @Override
     public String sayGreeting() {
-        return "Hello world - ENG";
+        return "Hello world - ENG-";
     }
 }
