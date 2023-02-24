@@ -1,0 +1,4 @@
+guru:
+  username: QADBUSer;
+  password: QAPassword;
+  jdbcurl: QAUrlDB
