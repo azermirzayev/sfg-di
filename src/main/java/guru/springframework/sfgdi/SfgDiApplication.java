@@ -6,6 +6,7 @@ import guru.springframework.sfgdi.controllers.MyController;
 import guru.springframework.sfgdi.controllers.PetController;
 import guru.springframework.sfgdi.controllers.PropertyInjectedController;
 import guru.springframework.sfgdi.controllers.SetterInjectedController;
+import guru.springframework.sfgdi.datasource.FakeDataSource;
 import guru.springframework.sfgdi.services.PrototypeBean;
 import guru.springframework.sfgdi.services.SingletonBean;
 import org.springframework.boot.SpringApplication;
@@ -14,21 +15,21 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-@ComponentScan(basePackages = {"guru.springframework.sfgdi","com.springframework.pets"})
+@ComponentScan(basePackages = {"guru.springframework.sfgdi", "com.springframework.pets"})
 @SpringBootApplication
 public class SfgDiApplication {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(SfgDiApplication.class, args);
         MyController c = (MyController) context.getBean("myController");
- 
+
         System.out.println("---------- Pet");
         PetController p = (PetController) context.getBean("petController");
         System.out.println(p.whichPetIsTheBest());
 
 
         System.out.println("---------- I18N");
- 
+
         I18nController i18 = (I18nController) context.getBean("i18nController");
         System.out.println(i18.sayHello());
 
@@ -60,6 +61,11 @@ public class SfgDiApplication {
         System.out.println(prototypeBean.getMyScope());
         PrototypeBean prototypeBean1 = context.getBean(PrototypeBean.class);
         System.out.println(prototypeBean1.getMyScope());
+
+        FakeDataSource fakeDataSource = context.getBean(FakeDataSource.class);
+        System.out.println(fakeDataSource.getUsername());
+        System.out.println(fakeDataSource.getPassword());
+        System.out.println(fakeDataSource.getJdbcurl());
 
     }
 
